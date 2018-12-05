@@ -1,0 +1,13 @@
+<h1>You're in</h1>
+
+<h3>Requirements</h3>
+<ul>
+  <li>Must have .xlsx or .xls extension</li>
+  <li>First column must have the title "Name", "name", or "NAME"</li>
+</ul>
+
+<h5>Select File</h5>
+<%= form_tag spreadsheet_import_index_url, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>

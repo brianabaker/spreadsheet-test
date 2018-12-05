@@ -1,0 +1,2 @@
+class SpreadsheetImport < ApplicationRecord
+end

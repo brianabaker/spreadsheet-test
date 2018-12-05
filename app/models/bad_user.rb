@@ -1,0 +1,2 @@
+class BadUser < ApplicationRecord
+end

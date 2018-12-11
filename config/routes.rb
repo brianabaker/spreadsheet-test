@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  # post '/showbad', to: 'bad_users#show_bad_users', as: "show_bad_users"
+
   resources :users
-  resources :spreadsheet_import, only: [:new, :create]
+  resources :spreadsheet_import, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
 end

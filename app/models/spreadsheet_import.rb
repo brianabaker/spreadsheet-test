@@ -26,9 +26,9 @@ class SpreadsheetImport
   end
 
   def self.load_imported_items(file)
-    spreadsheet = ItemsImport.open_spreadsheet(file)
+    spreadsheet = SpreadsheetImport.open_spreadsheet(file)
     temp_spreadsheet = [];
-    found_bad_users = [];
+    @found_bad_users = [];
     bad_users = BadUser.all
 
     header = spreadsheet.row(1)
@@ -51,14 +51,14 @@ class SpreadsheetImport
     bad_users.each do |bad_user|
       names.each do |name|
         if (bad_user.name == name)
-          found_bad_users.push(bad_user)
+          @found_bad_users.push(bad_user)
         end
       end
     end
 
-    found_bad_users
-    byebug
+    redirect_to spreadsheet_import_path(@found_bad_users)
   end
+
   #
   # def imported_items
   #   @imported_items ||= load_imported_items

@@ -1,0 +1,2 @@
+module BadUserHelper
+end

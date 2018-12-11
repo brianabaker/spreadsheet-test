@@ -6,13 +6,19 @@ class SpreadsheetImportController < ApplicationController
 
   def create
     #first hits this
-    SpreadsheetImport.load_imported_items(params[:file])
-    # render layout: false
+    found_bad_users = []
+    SpreadsheetImport.load_imported_items(params[:file], found_bad_users)
+    @found_bad_users = found_bad_users
+
+    byebug
+    render "spreadsheet_import/showbad"
+
   end
 
-  def show
-    byebug
-    # @spreadsheet = SpreadsheetImport.find(params[:id])
-  end
+  # def show_bad_users(bad_users)
+  #   byebug
+  #   render "spreadsheet_import/showbad"
+  #   # show_bad_users_path(bad_users)
+  # end
 
 end

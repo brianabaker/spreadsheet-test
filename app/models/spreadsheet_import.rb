@@ -15,7 +15,7 @@ class SpreadsheetImport
   # end
 
   def self.open_spreadsheet(file)
-    byebug
+    # byebug
     case File.extname(file.original_filename)
       when ".csv" then Csv.new(file.path, nil, :ignore)
       when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
@@ -25,10 +25,9 @@ class SpreadsheetImport
     end
   end
 
-  def self.load_imported_items(file)
+  def self.load_imported_items(file, found_bad_users)
     spreadsheet = SpreadsheetImport.open_spreadsheet(file)
     temp_spreadsheet = [];
-    @found_bad_users = [];
     bad_users = BadUser.all
 
     header = spreadsheet.row(1)
@@ -51,14 +50,12 @@ class SpreadsheetImport
     bad_users.each do |bad_user|
       names.each do |name|
         if (bad_user.name == name)
-          @found_bad_users.push(bad_user)
+          found_bad_users.push(bad_user)
         end
       end
     end
 
-    @found_bad_users
-    byebug
-    # redirect_to spreadsheet_import_path(@found_bad_users)
+    found_bad_users
   end
 
   #

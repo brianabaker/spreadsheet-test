@@ -56,7 +56,9 @@ class SpreadsheetImport
       end
     end
 
-    redirect_to spreadsheet_import_path(@found_bad_users)
+    @found_bad_users
+    byebug
+    # redirect_to spreadsheet_import_path(@found_bad_users)
   end
 
   #
